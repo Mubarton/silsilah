@@ -46,7 +46,7 @@
       "children": [
         "dasrianto",
         "elfrianto",
-        "dasfriani",
+        "dasriyani",
         "elfriana",
         "zulfrianto",
         "deni",
@@ -67,7 +67,7 @@
       "children": [
         "dasrianto",
         "elfrianto",
-        "dasfriani",
+        "dasriyani",
         "elfriana",
         "zulfrianto",
         "deni",
@@ -144,8 +144,8 @@
     },
     {
       "id": "keyna",
-      "name": "Keyna",
-      "nickname": "-",
+      "name": "Ainun Keyna Putri Nasution",
+      "nickname": "Keyna",
       "gender": "P",
       "born": "-",
       "died": "-",
@@ -277,16 +277,16 @@
       "name": "Elfida Putri Handayani Nasution",
       "nickname": "Riri",
       "gender": "P",
-      "born": "-",
+      "born": "24 November 2005",
       "died": "-",
       "note": "Cucu Nasruddin",
       "spouse": [],
       "children": []
     },
     {
-      "id": "dasfriani",
-      "name": "Dasfriani Nasution, S.Pd.",
-      "nickname": "-",
+      "id": "dasriyani",
+      "name": "Dasriyani Nasution, S.Pd.",
+      "nickname": "Nani",
       "gender": "P",
       "born": "-",
       "died": "-",
@@ -305,13 +305,13 @@
     {
       "id": "afifuddin",
       "name": "Afifuddin",
-      "nickname": "-",
+      "nickname": "Apit",
       "gender": "L",
       "born": "-",
       "died": "-",
-      "note": "Suami Dasfriani",
+      "note": "Suami Dasriyani",
       "spouse": [
-        "dasfriani"
+        "dasriyani"
       ],
       "children": [
         "tasya",
@@ -324,7 +324,7 @@
     {
       "id": "tasya",
       "name": "Tasya Amanda",
-      "nickname": "-",
+      "nickname": "Tasya",
       "gender": "P",
       "born": "-",
       "died": "-",
@@ -346,7 +346,7 @@
     {
       "id": "risyad",
       "name": "Risyad Fanny",
-      "nickname": "-",
+      "nickname": "Risad",
       "gender": "L",
       "born": "7 Maret 2004",
       "died": "-",
@@ -356,8 +356,8 @@
     },
     {
       "id": "nazla",
-      "name": "Nazla",
-      "nickname": "-",
+      "name": "Nazla Salsabila",
+      "nickname": "Nazla",
       "gender": "P",
       "born": "-",
       "died": "-",
@@ -367,8 +367,8 @@
     },
     {
       "id": "revan",
-      "name": "Revan",
-      "nickname": "-",
+      "name": "Revan Muzriyanda",
+      "nickname": "Revan",
       "gender": "L",
       "born": "-",
       "died": "-",
@@ -379,7 +379,7 @@
     {
       "id": "elfriana",
       "name": "Elfriana Nasution, S.Pd.",
-      "nickname": "-",
+      "nickname": "Nana",
       "gender": "P",
       "born": "-",
       "died": "-",
@@ -411,7 +411,7 @@
     {
       "id": "azriyan",
       "name": "Azriyan Mulia Aswana",
-      "nickname": "-",
+      "nickname": "Azriyan",
       "gender": "L",
       "born": "-",
       "died": "-",
@@ -421,8 +421,8 @@
     },
     {
       "id": "fikri",
-      "name": "Fikri Dwi",
-      "nickname": "-",
+      "name": "Fikri Dwi Putra Aswana",
+      "nickname": "Fikri",
       "gender": "L",
       "born": "-",
       "died": "-",
@@ -433,7 +433,7 @@
     {
       "id": "zulfrianto",
       "name": "Zulfrianto Nasution, S.Sos.",
-      "nickname": "-",
+      "nickname": "Zul",
       "gender": "L",
       "born": "-",
       "died": "-",
@@ -450,7 +450,7 @@
     {
       "id": "rahmawati",
       "name": "Rahmawati",
-      "nickname": "-",
+      "nickname": "Rama",
       "gender": "P",
       "born": "-",
       "died": "-",
@@ -489,7 +489,7 @@
     {
       "id": "muhammad_alfarizqi",
       "name": "Muhammad Alfarizqi Nasution",
-      "nickname": "-",
+      "nickname": "Rizqi",
       "gender": "L",
       "born": "-",
       "died": "-",
@@ -515,7 +515,7 @@
     {
       "id": "legino",
       "name": "Legino",
-      "nickname": "-",
+      "nickname": "Egi",
       "gender": "L",
       "born": "-",
       "died": "-",
@@ -529,8 +529,8 @@
     },
     {
       "id": "lutfi",
-      "name": "Lutfi",
-      "nickname": "-",
+      "name": "Luthfi Anugerah Pratama",
+      "nickname": "Lutfi",
       "gender": "L",
       "born": "-",
       "died": "-",
@@ -555,8 +555,8 @@
     },
     {
       "id": "silvia",
-      "name": "Silvia",
-      "nickname": "-",
+      "name": "Silvia Suarni Satria Putri S.Pd",
+      "nickname": "Silvi",
       "gender": "P",
       "born": "-",
       "died": "-",
