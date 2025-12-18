@@ -1,0 +1,594 @@
+{
+  "rootTopId": "abdul_wahab",
+  "rootId": "nasruddin",
+  "people": [
+    {
+      "id": "abdul_wahab",
+      "name": "Abdul Wahab",
+      "nickname": "-",
+      "gender": "L",
+      "born": "-",
+      "died": "-",
+      "note": "Orang tua Nasruddin",
+      "spouse": [
+        "alang_radiah"
+      ],
+      "children": [
+        "nasruddin"
+      ]
+    },
+    {
+      "id": "alang_radiah",
+      "name": "Alang Radiah",
+      "nickname": "-",
+      "gender": "P",
+      "born": "-",
+      "died": "-",
+      "note": "Orang tua Nasruddin",
+      "spouse": [
+        "abdul_wahab"
+      ],
+      "children": [
+        "nasruddin"
+      ]
+    },
+    {
+      "id": "nasruddin",
+      "name": "H. Nasruddin Nasution",
+      "nickname": "-",
+      "gender": "L",
+      "born": "-",
+      "died": "-",
+      "note": "Kepala keluarga",
+      "spouse": [
+        "nuraini"
+      ],
+      "children": [
+        "dasrianto",
+        "elfrianto",
+        "dasfriani",
+        "elfriana",
+        "zulfrianto",
+        "deni",
+        "wawan"
+      ]
+    },
+    {
+      "id": "nuraini",
+      "name": "Hj. Nur'aini",
+      "nickname": "-",
+      "gender": "P",
+      "born": "-",
+      "died": "-",
+      "note": "Istri Nasruddin",
+      "spouse": [
+        "nasruddin"
+      ],
+      "children": [
+        "dasrianto",
+        "elfrianto",
+        "dasfriani",
+        "elfriana",
+        "zulfrianto",
+        "deni",
+        "wawan"
+      ]
+    },
+    {
+      "id": "dasrianto",
+      "name": "Dasrianto Nasution",
+      "nickname": "-",
+      "gender": "L",
+      "born": "19 Desember 1972",
+      "died": "-",
+      "note": "Anak Nasruddin",
+      "spouse": [
+        "lindayani"
+      ],
+      "children": [
+        "nanda",
+        "wafiq",
+        "dafha",
+        "sipha"
+      ]
+    },
+    {
+      "id": "lindayani",
+      "name": "Lindayani",
+      "nickname": "-",
+      "gender": "P",
+      "born": "28 Desember 1978",
+      "died": "-",
+      "note": "Istri Dasrianto",
+      "spouse": [
+        "dasrianto"
+      ],
+      "children": [
+        "nanda",
+        "wafiq",
+        "dafha",
+        "sipha"
+      ]
+    },
+    {
+      "id": "nanda",
+      "name": "Nanda Pratama Putra Nasution",
+      "nickname": "-",
+      "gender": "L",
+      "born": "27 Juli 2000",
+      "died": "-",
+      "note": "Cucu Nasruddin",
+      "spouse": [
+        "dila"
+      ],
+      "children": [
+        "keyna",
+        "nasa"
+      ]
+    },
+    {
+      "id": "dila",
+      "name": "Dila",
+      "nickname": "-",
+      "gender": "P",
+      "born": "-",
+      "died": "-",
+      "note": "Istri Nanda",
+      "spouse": [
+        "nanda"
+      ],
+      "children": [
+        "keyna",
+        "nasa"
+      ]
+    },
+    {
+      "id": "keyna",
+      "name": "Keyna",
+      "nickname": "-",
+      "gender": "P",
+      "born": "-",
+      "died": "-",
+      "note": "Anak Nanda",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "nasa",
+      "name": "Nasa",
+      "nickname": "-",
+      "gender": "L",
+      "born": "-",
+      "died": "-",
+      "note": "Anak Nanda",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "wafiq",
+      "name": "Wafiq Ninthyas Br Nasution",
+      "nickname": "Ela",
+      "gender": "L",
+      "born": "05 Agustus 2003",
+      "died": "-",
+      "note": "Cucu Nasruddin",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "dafha",
+      "name": "Dafha Arizha Putra Nasution",
+      "nickname": "-",
+      "gender": "L",
+      "born": "23 Januari 2007",
+      "died": "-",
+      "note": "Cucu Nasruddin",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "sipha",
+      "name": "Sipha Azahra Br Nasution",
+      "nickname": "-",
+      "gender": "P",
+      "born": "12 Oktober 2009",
+      "died": "-",
+      "note": "Cucu Nasruddin",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "elfrianto",
+      "name": "Prof. Dr. H. Elfrianto Nasution, S.Pd., M.Pd.",
+      "nickname": "-",
+      "gender": "L",
+      "born": "15 Mei 1973",
+      "died": "-",
+      "note": "Anak Nasruddin",
+      "spouse": [
+        "subhidawarni"
+      ],
+      "children": [
+        "mutiara",
+        "elfida"
+      ]
+    },
+    {
+      "id": "kadarudin",
+      "name": "Kadarudin",
+      "nickname": "-",
+      "gender": "L",
+      "born": "-",
+      "died": "-",
+      "note": "Orang tua Subhidawarni",
+      "spouse": [
+        "muhibbah"
+      ],
+      "children": [
+        "bahdin",
+        "subhidawarni"
+      ]
+    },
+    {
+      "id": "muhibbah",
+      "name": "Hj. Muhibbah Habayahan",
+      "nickname": "-",
+      "gender": "P",
+      "born": "-",
+      "died": "-",
+      "note": "Orang tua Subhidawarni",
+      "spouse": [
+        "kadarudin"
+      ],
+      "children": [
+        "subhidawarni",
+        "bahdin"
+      ]
+    },
+    {
+      "id": "subhidawarni",
+      "name": "Hj. Subhidawarni Pasaribu, S.Ag.",
+      "nickname": "-",
+      "gender": "P",
+      "born": "1 November 1974",
+      "died": "-",
+      "note": "Istri Elfrianto",
+      "spouse": [
+        "elfrianto"
+      ],
+      "children": [
+        "mutiara",
+        "elfida"
+      ]
+    },
+    {
+      "id": "mutiara",
+      "name": "Mutiara Akbar Nasution, S.Kom., S.Bns",
+      "nickname": "Akbar",
+      "gender": "L",
+      "born": "3 Maret 2004",
+      "died": "-",
+      "note": "Cucu Nasruddin",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "elfida",
+      "name": "Elfida Putri Handayani Nasution",
+      "nickname": "Riri",
+      "gender": "P",
+      "born": "-",
+      "died": "-",
+      "note": "Cucu Nasruddin",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "dasfriani",
+      "name": "Dasfriani Nasution, S.Pd.",
+      "nickname": "-",
+      "gender": "P",
+      "born": "-",
+      "died": "-",
+      "note": "Anak Nasruddin",
+      "spouse": [
+        "afifuddin"
+      ],
+      "children": [
+        "tasya",
+        "ika",
+        "risyad",
+        "nazla",
+        "revan"
+      ]
+    },
+    {
+      "id": "afifuddin",
+      "name": "Afifuddin",
+      "nickname": "-",
+      "gender": "L",
+      "born": "-",
+      "died": "-",
+      "note": "Suami Dasfriani",
+      "spouse": [
+        "dasfriani"
+      ],
+      "children": [
+        "tasya",
+        "ika",
+        "risyad",
+        "nazla",
+        "revan"
+      ]
+    },
+    {
+      "id": "tasya",
+      "name": "Tasya Amanda",
+      "nickname": "-",
+      "gender": "P",
+      "born": "-",
+      "died": "-",
+      "note": "Cucu Nasruddin",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "ika",
+      "name": "Ika Nadila S.Ak",
+      "nickname": "Ika",
+      "gender": "P",
+      "born": "-",
+      "died": "-",
+      "note": "Cucu Nasruddin",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "risyad",
+      "name": "Risyad Fanny",
+      "nickname": "-",
+      "gender": "L",
+      "born": "7 Maret 2004",
+      "died": "-",
+      "note": "Cucu Nasruddin",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "nazla",
+      "name": "Nazla",
+      "nickname": "-",
+      "gender": "P",
+      "born": "-",
+      "died": "-",
+      "note": "Cucu Nasruddin",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "revan",
+      "name": "Revan",
+      "nickname": "-",
+      "gender": "L",
+      "born": "-",
+      "died": "-",
+      "note": "Cucu Nasruddin",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "elfriana",
+      "name": "Elfriana Nasution, S.Pd.",
+      "nickname": "-",
+      "gender": "P",
+      "born": "-",
+      "died": "-",
+      "note": "Anak Nasruddin",
+      "spouse": [
+        "aswansyah"
+      ],
+      "children": [
+        "azriyan",
+        "fikri"
+      ]
+    },
+    {
+      "id": "aswansyah",
+      "name": "Aswansyah Putra S.Pd",
+      "nickname": "Aswan",
+      "gender": "L",
+      "born": "-",
+      "died": "-",
+      "note": "Suami Elfriana",
+      "spouse": [
+        "elfriana"
+      ],
+      "children": [
+        "azriyan",
+        "fikri"
+      ]
+    },
+    {
+      "id": "azriyan",
+      "name": "Azriyan Mulia Aswana",
+      "nickname": "-",
+      "gender": "L",
+      "born": "-",
+      "died": "-",
+      "note": "Cucu Nasruddin",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "fikri",
+      "name": "Fikri Dwi",
+      "nickname": "-",
+      "gender": "L",
+      "born": "-",
+      "died": "-",
+      "note": "Cucu Nasruddin",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "zulfrianto",
+      "name": "Zulfrianto Nasution, S.Sos.",
+      "nickname": "-",
+      "gender": "L",
+      "born": "-",
+      "died": "-",
+      "note": "Anak Nasruddin",
+      "spouse": [
+        "rahmawati"
+      ],
+      "children": [
+        "alfizul",
+        "mikaila",
+        "muhammad_alfarizqi"
+      ]
+    },
+    {
+      "id": "rahmawati",
+      "name": "Rahmawati",
+      "nickname": "-",
+      "gender": "P",
+      "born": "-",
+      "died": "-",
+      "note": "Istri Zulfrianto",
+      "spouse": [
+        "zulfrianto"
+      ],
+      "children": [
+        "alfizul",
+        "mikaila",
+        "muhammad_alfarizqi"
+      ]
+    },
+    {
+      "id": "alfizul",
+      "name": "Alfizul Fitra Ramadhan Nasution",
+      "nickname": "Wahyu",
+      "gender": "L",
+      "born": "-",
+      "died": "-",
+      "note": "Cucu Nasruddin",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "mikaila",
+      "name": "Mikaila Azahra Putri Nasution",
+      "nickname": "Tias",
+      "gender": "P",
+      "born": "-",
+      "died": "-",
+      "note": "Cucu Nasruddin",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "muhammad_alfarizqi",
+      "name": "Muhammad Alfarizqi Nasution",
+      "nickname": "-",
+      "gender": "L",
+      "born": "-",
+      "died": "-",
+      "note": "Cucu Nasruddin",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "deni",
+      "name": "Deni Arsiyati Nasution S.Pd",
+      "nickname": "-",
+      "gender": "P",
+      "born": "-",
+      "died": "-",
+      "note": "Anak Nasruddin",
+      "spouse": [
+        "legino"
+      ],
+      "children": [
+        "lutfi"
+      ]
+    },
+    {
+      "id": "legino",
+      "name": "Legino",
+      "nickname": "-",
+      "gender": "L",
+      "born": "-",
+      "died": "-",
+      "note": "Suami Deni",
+      "spouse": [
+        "deni"
+      ],
+      "children": [
+        "lutfi"
+      ]
+    },
+    {
+      "id": "lutfi",
+      "name": "Lutfi",
+      "nickname": "-",
+      "gender": "L",
+      "born": "-",
+      "died": "-",
+      "note": "Cucu Nasruddin",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "wawan",
+      "name": "Wawan Kurniawan Nasution S.Pd.",
+      "nickname": "-",
+      "gender": "L",
+      "born": "-",
+      "died": "-",
+      "note": "Anak Nasruddin",
+      "spouse": [
+        "silvia"
+      ],
+      "children": [
+        "zhafi"
+      ]
+    },
+    {
+      "id": "silvia",
+      "name": "Silvia",
+      "nickname": "-",
+      "gender": "P",
+      "born": "-",
+      "died": "-",
+      "note": "Istri Wawan",
+      "spouse": [
+        "wawan"
+      ],
+      "children": [
+        "zhafi"
+      ]
+    },
+    {
+      "id": "zhafi",
+      "name": "Zhafi Abyan Falah Nasution",
+      "nickname": "-",
+      "gender": "L",
+      "born": "-",
+      "died": "-",
+      "note": "Cucu Nasruddin",
+      "spouse": [],
+      "children": []
+    },
+    {
+      "id": "bahdin",
+      "name": "Prof. Dr. H. Bahdin Nur Tanjung SE., MM.",
+      "nickname": "Bahdin",
+      "gender": "L",
+      "born": "8 Januari 1964",
+      "died": "-",
+      "note": "",
+      "spouse": [],
+      "children": []
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Silsilah Keluarga</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+<header>
+  <div class="wrap top">
+    <div>
+      <h1>Silsilah Keluarga</h1>
+      <div class="sub">
+        Klik kartu untuk lihat detail. Klik “Jadikan Root” untuk fokus ke keluarga tersebut.
+      </div>
+      <div id="breadcrumb" class="breadcrumb"></div>
+    </div>
+
+    <div class="controls">
+      <div style="position:relative">
+        <input id="q" type="search" placeholder="Cari nama / panggilan..." autocomplete="off" />
+        <div id="searchBox" class="searchBox"></div>
+      </div>
+      <button class="ghost" id="btnTop">Root Teratas</button>
+      <button class="ghost" id="btnNasruddin">Root Nasruddin</button>
+      <button id="btnExport">Export PDF</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="grid">
+    <section class="panel">
+      <div class="head">
+        <div class="hint">Root saat ini: <span id="rootLabel"></span></div>
+        <div class="hint">Tip: klik “Buka Anak” untuk lihat keturunan</div>
+      </div>
+      <div class="body">
+        <div id="tree" class="tree"></div>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="head">
+        <div style="font-weight:800">Detail</div>
+        <div class="hint" id="selHint">-</div>
+      </div>
+      <div class="body">
+        <div id="detail" class="empty">Klik salah satu kartu di pohon.</div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<script src="js/data.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/search.js"></script>
+<script src="js/export.js"></script>
+
+<script>
+  // tombol root
+  document.getElementById("btnTop").addEventListener("click", () => setRoot(DATA.rootTopId));
+  document.getElementById("btnNasruddin").addEventListener("click", () => setRoot("nasruddin"));
+
+  // tombol export
+  document.getElementById("btnExport").addEventListener("click", () => exportPDF());
+
+  // init
+  loadData().then(() => {
+    setRoot(DATA.rootId);
+  }).catch(err => {
+    alert(err.message);
+  });
+</script>
+
+</body>
+</html>

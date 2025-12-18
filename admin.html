@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Silsilah</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .adminGrid{display:grid;grid-template-columns:420px 1fr;gap:14px}
+    @media (max-width: 980px){ .adminGrid{grid-template-columns:1fr} }
+
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+    .small{font-size:12px;color:var(--muted);line-height:1.5}
+    .pill{display:inline-block;padding:3px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:var(--muted);font-size:12px}
+
+    .table{width:100%;border-collapse:separate;border-spacing:0 8px}
+    .table td{padding:10px;border:1px solid rgba(255,255,255,.10);background:rgba(17,26,46,.55)}
+    .table td:first-child{border-radius:12px 0 0 12px}
+    .table td:last-child{border-radius:0 12px 12px 0}
+    .rowBtn{padding:6px 8px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:var(--text);cursor:pointer;font-size:12px}
+    .rowBtn:hover{background:rgba(255,255,255,.10)}
+
+    .formGrid{display:grid;grid-template-columns:140px 1fr;gap:10px;align-items:center}
+    .formGrid input, .formGrid select, .formGrid textarea{
+      padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);color:var(--text);outline:none;width:100%;
+    }
+    .formGrid textarea{min-height:80px;resize:vertical}
+    .box{
+      padding:10px;border:1px solid rgba(255,255,255,.10);
+      background:rgba(17,26,46,.45);border-radius:14px;
+    }
+    .list2{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+    .chipRow{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{
+      display:flex;gap:8px;align-items:center;
+      padding:6px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      font-size:12px;
+    }
+    .chip button{padding:4px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);font-size:12px}
+    .chip button:hover{background:rgba(255,255,255,.10)}
+    .danger{background:rgba(255,107,107,.16)!important}
+    .danger:hover{background:rgba(255,107,107,.22)!important}
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="wrap top">
+    <div>
+      <h1>Admin Dashboard — Silsilah</h1>
+      <div class="sub">Edit data → Export JSON → ganti file <span class="pill">data/family.json</span></div>
+      <div class="small">
+        Tips: buat ID pakai huruf kecil + underscore. Contoh: <span class="pill">nanda_pratama</span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="ghost" id="btnOpenViewer">Buka Viewer</button>
+      <button id="btnExport">Export JSON</button>
+      <button class="ghost" id="btnImport">Import JSON</button>
+      <input id="fileInput" type="file" accept="application/json" style="display:none" />
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="adminGrid">
+    <section class="panel">
+      <div class="head">
+        <div style="font-weight:800">Daftar Orang</div>
+        <div class="hint"><span id="count">0</span> orang</div>
+      </div>
+      <div class="body">
+        <div class="toolbar">
+          <input id="filter" type="search" placeholder="Cari nama / panggilan..." autocomplete="off" />
+          <button class="ghost" id="btnNew">+ Tambah Orang</button>
+        </div>
+
+        <table class="table" id="table"></table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="head">
+        <div style="font-weight:800">Editor</div>
+        <div class="hint" id="editorHint">-</div>
+      </div>
+      <div class="body">
+        <div id="editorEmpty" class="empty">Pilih orang dari daftar, atau klik “Tambah Orang”.</div>
+
+        <div id="editor" style="display:none">
+          <div class="box">
+            <div class="formGrid">
+              <div class="k">ID</div>
+              <div class="v"><input id="f_id" type="text" placeholder="mis: nanda" /></div>
+
+              <div class="k">Nama</div>
+              <div class="v"><input id="f_name" type="text" placeholder="Nama lengkap" /></div>
+
+              <div class="k">Panggilan</div>
+              <div class="v"><input id="f_nick" type="text" placeholder="mis: Akbar / Riri / -" /></div>
+
+              <div class="k">Gender</div>
+              <div class="v">
+                <select id="f_gender">
+                  <option value="L">Laki-laki</option>
+                  <option value="P">Perempuan</option>
+                </select>
+              </div>
+
+              <div class="k">Lahir</div>
+              <div class="v"><input id="f_born" type="text" placeholder="mis: 3 Maret 2004 / -" /></div>
+
+              <div class="k">Wafat</div>
+              <div class="v"><input id="f_died" type="text" placeholder="-" /></div>
+
+              <div class="k">Catatan</div>
+              <div class="v"><textarea id="f_note" placeholder="Catatan singkat..."></textarea></div>
+            </div>
+          </div>
+
+          <div style="height:12px"></div>
+
+          <div class="box">
+            <div style="font-weight:800">Relasi</div>
+
+            <div class="list2">
+              <div>
+                <div class="k">Pasangan</div>
+                <div class="chipRow" id="chipsSpouse"></div>
+                <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap">
+                  <select id="pickSpouse"></select>
+                  <button class="mini" id="btnAddSpouse">Tambah Pasangan</button>
+                </div>
+              </div>
+
+              <div style="height:10px"></div>
+
+              <div>
+                <div class="k">Orang Tua</div>
+                <div class="chipRow" id="chipsParent"></div>  
+                <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap">
+                    <select id="pickParent"></select>
+                    <button class="mini" id="btnSetParent">Set Orang Tua</button>
+                </div>
+                <div class="small" style="margin-top:6px">
+                    Ini akan menambahkan orang yang dipilih sebagai orang tua dari orang yang sedang diedit (anak saat ini).
+                    Jika orang tua punya pasangan, bisa ikut ditambahkan juga (opsional otomatis).
+                </div>
+              </div>
+
+              <div style="height:10px"></div>
+
+              <div>
+                <div class="k">Anak</div>
+                <div class="chipRow" id="chipsChild"></div>
+                <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap">
+                  <select id="pickChild"></select>
+                  <button class="mini" id="btnAddChild">Tambah Anak</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="height:12px"></div>
+
+          <div class="toolbar">
+            <button id="btnSave">Simpan</button>
+            <button class="ghost" id="btnCancel">Batal</button>
+            <button class="danger" id="btnDelete">Hapus Orang</button>
+          </div>
+
+          <div class="small">
+            Saat tambah pasangan/anak, sistem otomatis menjaga relasi (pasangan timbal-balik). Untuk anak, admin ini menyimpan “anak” di orang yang sedang diedit.
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+/* =========================
+   ADMIN DASHBOARD (NO BACKEND)
+   - Load data/family.json
+   - CRUD people
+   - Manage spouse (two-way)
+   - Manage children (one-way from parent)
+   - Export JSON (download)
+   - Import JSON (load file)
+========================= */
+
+let STORE = null;      // mirror of family.json
+let byId = new Map();
+
+const $ = (id)=>document.getElementById(id);
+
+const tableEl = $("table");
+const countEl = $("count");
+const filterEl = $("filter");
+
+const editorEmpty = $("editorEmpty");
+const editor = $("editor");
+const editorHint = $("editorHint");
+
+const f_id = $("f_id");
+const f_name = $("f_name");
+const f_nick = $("f_nick");
+const f_gender = $("f_gender");
+const f_born = $("f_born");
+const f_died = $("f_died");
+const f_note = $("f_note");
+
+const chipsSpouse = $("chipsSpouse");
+const chipsChild = $("chipsChild");
+const chipsParent = $("chipsParent");
+
+const pickSpouse = $("pickSpouse");
+const pickChild = $("pickChild");
+const pickParent = $("pickParent");
+const btnAddSpouse = $("btnAddSpouse");
+const btnAddChild = $("btnAddChild");
+const btnSetParent = $("btnSetParent");
+
+const btnNew = $("btnNew");
+const btnSave = $("btnSave");
+const btnCancel = $("btnCancel");
+const btnDelete = $("btnDelete");
+
+const btnExport = $("btnExport");
+const btnImport = $("btnImport");
+const fileInput = $("fileInput");
+const btnOpenViewer = $("btnOpenViewer");
+
+let currentId = null;
+let isNew = false;
+
+function normalizePerson(p){
+  p.spouse = Array.isArray(p.spouse) ? p.spouse : [];
+  p.children = Array.isArray(p.children) ? p.children : [];
+  p.born = p.born || "-";
+  p.died = p.died || "-";
+  p.note = p.note || "";
+  p.gender = p.gender || "L";
+  p.nickname = p.nickname || "-";
+  return p;
+}
+
+function rebuildIndex(){
+  byId.clear();
+  STORE.people.forEach(p => byId.set(p.id, normalizePerson(p)));
+}
+
+function get(id){ return byId.get(id); }
+function arr(x){ return Array.isArray(x) ? x : []; }
+
+function esc(s){
+  return String(s ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+
+async function loadStore(){
+  const res = await fetch("data/family.json");
+  if(!res.ok) throw new Error("Gagal memuat data/family.json");
+  STORE = await res.json();
+  STORE.people = Array.isArray(STORE.people) ? STORE.people : [];
+  rebuildIndex();
+  renderList();
+}
+
+function renderList(){
+  const q = (filterEl.value || "").trim().toLowerCase();
+  const people = STORE.people
+    .filter(p => {
+      if(!q) return true;
+      const n = (p.name||"").toLowerCase();
+      const k = (p.nickname||"").toLowerCase();
+      return n.includes(q) || k.includes(q);
+    })
+    .sort((a,b) => (a.name||"").localeCompare(b.name||"", "id"));
+
+  countEl.textContent = STORE.people.length;
+
+  tableEl.innerHTML = people.map(p => `
+    <tr>
+      <td style="width:70%">
+        <div style="font-weight:800">${esc(p.name || "-")}</div>
+        <div class="small">id: <span class="pill">${esc(p.id)}</span>
+          ${p.nickname && p.nickname!=="-" ? ` · panggilan: <span class="pill">${esc(p.nickname)}</span>` : ``}
+        </div>
+      </td>
+      <td style="width:30%;text-align:right">
+        <button class="rowBtn" data-edit="${esc(p.id)}">Edit</button>
+      </td>
+    </tr>
+  `).join("");
+
+  tableEl.querySelectorAll("[data-edit]").forEach(btn=>{
+    btn.addEventListener("click", ()=> openEditor(btn.getAttribute("data-edit"), false));
+  });
+
+  refreshPickers();
+}
+
+function refreshPickers(){
+  // dropdown orang (untuk pasangan/anak)
+  const options = STORE.people
+    .slice()
+    .sort((a,b)=> (a.name||"").localeCompare(b.name||"","id"))
+    .map(p => `<option value="${esc(p.id)}">${esc(p.name)} (${esc(p.id)})</option>`)
+    .join("");
+
+  pickSpouse.innerHTML = `<option value="">-- pilih orang --</option>` + options;
+  pickChild.innerHTML = `<option value="">-- pilih orang --</option>` + options;
+  pickParent.innerHTML = `<option value="">-- pilih orang tua --</option>` + options;
+
+}
+
+function clearEditor(){
+  currentId = null; isNew = false;
+  editorEmpty.style.display = "block";
+  editor.style.display = "none";
+  editorHint.textContent = "-";
+}
+
+function openEditor(id, createNew){
+  isNew = createNew;
+
+  editorEmpty.style.display = "none";
+  editor.style.display = "block";
+
+  if(createNew){
+    currentId = null;
+    editorHint.textContent = "Tambah Orang Baru";
+    f_id.value = "";
+    f_name.value = "";
+    f_nick.value = "-";
+    f_gender.value = "L";
+    f_born.value = "-";
+    f_died.value = "-";
+    f_note.value = "";
+    chipsSpouse.innerHTML = "";
+    chipsChild.innerHTML = "";
+    return;
+  }
+
+  const p = get(id);
+  if(!p){ alert("Data tidak ditemukan"); return; }
+  currentId = id;
+
+  editorHint.textContent = `Edit: ${p.name}`;
+
+  f_id.value = p.id;
+  f_name.value = p.name || "";
+  f_nick.value = p.nickname || "-";
+  f_gender.value = p.gender || "L";
+  f_born.value = p.born || "-";
+  f_died.value = p.died || "-";
+  f_note.value = p.note || "";
+
+  renderChips();
+}
+
+function renderChips(){
+  const p = currentId ? get(currentId) : null;
+  // ORANG TUA (dihitung dari siapa yang memiliki anak = currentId)
+  const parentIds = currentId ? parentsOf(currentId) : [];
+  chipsParent.innerHTML = parentIds.length ? parentIds.map(pid=>{
+      const par = get(pid);
+      const label = par ? par.name : pid;
+      return `<span class="chip">${esc(label)} <button data-rm-parent="${esc(pid)}">x</button></span>`;
+  }).join("") : `<span class="small">-</span>`;
+
+  chipsParent.querySelectorAll("[data-rm-parent]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+        const pid = btn.getAttribute("data-rm-parent");
+        removeParentLink(pid, currentId);
+        renderChips();
+    });
+  });
+
+  if(!p){
+    chipsSpouse.innerHTML = "";
+    chipsChild.innerHTML = "";
+    return;
+  }
+
+  chipsSpouse.innerHTML = arr(p.spouse).map(sid=>{
+    const sp = get(sid);
+    const label = sp ? sp.name : sid;
+    return `<span class="chip">${esc(label)} <button data-rm-spouse="${esc(sid)}">x</button></span>`;
+  }).join("") || `<span class="small">-</span>`;
+
+  chipsChild.innerHTML = arr(p.children).map(cid=>{
+    const ch = get(cid);
+    const label = ch ? ch.name : cid;
+    return `<span class="chip">${esc(label)} <button data-rm-child="${esc(cid)}">x</button></span>`;
+  }).join("") || `<span class="small">-</span>`;
+
+  chipsSpouse.querySelectorAll("[data-rm-spouse]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      removeSpouse(currentId, btn.getAttribute("data-rm-spouse"));
+      renderChips();
+    });
+  });
+
+  chipsChild.querySelectorAll("[data-rm-child]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      removeChild(currentId, btn.getAttribute("data-rm-child"));
+      renderChips();
+    });
+  });
+}
+
+/* ===== Relasi ===== */
+
+function addSpouse(a, b){
+  if(!a || !b || a===b) return;
+  const pa = get(a), pb = get(b);
+  if(!pa || !pb) return;
+
+  if(!pa.spouse.includes(b)) pa.spouse.push(b);
+  if(!pb.spouse.includes(a)) pb.spouse.push(a);
+}
+
+function removeSpouse(a, b){
+  const pa = get(a), pb = get(b);
+  if(!pa || !pb) return;
+
+  pa.spouse = pa.spouse.filter(x=>x!==b);
+  pb.spouse = pb.spouse.filter(x=>x!==a);
+
+  // sync back to STORE.people objects
+  syncBack(a); syncBack(b);
+}
+
+function addChild(parentId, childId){
+  if(!parentId || !childId || parentId===childId) return;
+  const p = get(parentId), c = get(childId);
+  if(!p || !c) return;
+  if(!p.children.includes(childId)) p.children.push(childId);
+}
+
+function removeChild(parentId, childId){
+  const p = get(parentId);
+  if(!p) return;
+  p.children = p.children.filter(x=>x!==childId);
+  syncBack(parentId);
+}
+
+function syncBack(id){
+  const idx = STORE.people.findIndex(x => x.id === id);
+  if(idx >= 0){
+    STORE.people[idx] = { ...get(id) };
+  }
+}
+
+function parentsOf(childId){
+  const res = [];
+  STORE.people.forEach(p=>{
+    if(arr(p.children).includes(childId)) res.push(p.id);
+  });
+  return res;
+}
+
+function removeParentLink(parentId, childId){
+  const p = get(parentId);
+  if(!p) return;
+  p.children = arr(p.children).filter(x => x !== childId);
+  syncBack(parentId);
+  rebuildIndex();
+  renderList();
+}
+
+/* ===== CRUD ===== */
+
+function validatePersonDraft(draft, oldId){
+  if(!draft.id) return "ID wajib diisi";
+  if(!/^[a-z0-9_]+$/.test(draft.id)) return "ID hanya boleh huruf kecil, angka, underscore";
+  if(!draft.name) return "Nama wajib diisi";
+
+  // cek id duplikat (kalau edit, boleh sama dengan oldId)
+  const exists = STORE.people.some(p => p.id === draft.id && p.id !== oldId);
+  if(exists) return "ID sudah dipakai orang lain";
+
+  return null;
+}
+
+function saveEditor(){
+  const draft = normalizePerson({
+    id: (f_id.value||"").trim(),
+    name: (f_name.value||"").trim(),
+    nickname: (f_nick.value||"-").trim() || "-",
+    gender: f_gender.value,
+    born: (f_born.value||"-").trim() || "-",
+    died: (f_died.value||"-").trim() || "-",
+    note: (f_note.value||"").trim(),
+    spouse: [],
+    children: []
+  });
+
+  if(isNew){
+    const err = validatePersonDraft(draft, null);
+    if(err) return alert(err);
+
+    STORE.people.push(draft);
+    rebuildIndex();
+    renderList();
+    openEditor(draft.id, false);
+    return;
+  }
+
+  const oldId = currentId;
+  const old = get(oldId);
+  if(!old) return alert("Data tidak ditemukan");
+
+  // preserve relasi spouse/children dari data lama
+  draft.spouse = arr(old.spouse).slice();
+  draft.children = arr(old.children).slice();
+
+  const err = validatePersonDraft(draft, oldId);
+  if(err) return alert(err);
+
+  // jika id berubah: perlu update referensi di semua orang
+  const newId = draft.id;
+  if(newId !== oldId){
+    // update references
+    STORE.people.forEach(p=>{
+      p.spouse = arr(p.spouse).map(x => x===oldId ? newId : x);
+      p.children = arr(p.children).map(x => x===oldId ? newId : x);
+    });
+
+    // update rootId jika perlu
+    if(STORE.rootId === oldId) STORE.rootId = newId;
+    if(STORE.rootTopId === oldId) STORE.rootTopId = newId;
+  }
+
+  // replace in STORE
+  const idx = STORE.people.findIndex(p => p.id === oldId);
+  STORE.people[idx] = draft;
+
+  rebuildIndex();
+  renderList();
+  openEditor(newId, false);
+}
+
+function deletePerson(){
+  if(!currentId) return;
+  const p = get(currentId);
+  if(!p) return;
+
+  if(!confirm(`Hapus ${p.name}? Ini akan menghapus referensi pasangan/anak di orang lain juga.`)) return;
+
+  // remove references
+  STORE.people.forEach(x=>{
+    x.spouse = arr(x.spouse).filter(id => id !== currentId);
+    x.children = arr(x.children).filter(id => id !== currentId);
+  });
+
+  // remove the person
+  STORE.people = STORE.people.filter(x => x.id !== currentId);
+
+  // if root points to deleted, fallback
+  if(STORE.rootId === currentId) STORE.rootId = STORE.rootTopId || (STORE.people[0]?.id || "");
+  if(STORE.rootTopId === currentId) STORE.rootTopId = STORE.people[0]?.id || "";
+
+  rebuildIndex();
+  renderList();
+  clearEditor();
+}
+
+function exportJSON(){
+  // sync byId -> STORE.people to ensure latest edits
+  STORE.people = STORE.people.map(p => ({...get(p.id)}));
+
+  const blob = new Blob([JSON.stringify(STORE, null, 2)], { type:"application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "family.json";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+
+function importJSONFile(file){
+  const reader = new FileReader();
+  reader.onload = () => {
+    try{
+      const obj = JSON.parse(reader.result);
+      if(!obj || !Array.isArray(obj.people)) throw new Error("Format JSON tidak valid");
+      STORE = obj;
+      STORE.people = STORE.people.map(normalizePerson);
+      rebuildIndex();
+      renderList();
+      clearEditor();
+      alert("Import berhasil. Jangan lupa Export JSON setelah edit.");
+    }catch(e){
+      alert("Gagal import: " + e.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+/* ===== Events ===== */
+
+filterEl.addEventListener("input", renderList);
+
+btnNew.addEventListener("click", () => openEditor(null, true));
+btnSave.addEventListener("click", saveEditor);
+btnCancel.addEventListener("click", clearEditor);
+btnDelete.addEventListener("click", deletePerson);
+
+btnAddSpouse.addEventListener("click", () => {
+  const id = currentId || (isNew ? null : null);
+  if(isNew){
+    return alert("Simpan dulu orang baru, baru bisa menambah relasi.");
+  }
+  const target = pickSpouse.value;
+  if(!target) return;
+  addSpouse(currentId, target);
+  syncBack(currentId); syncBack(target);
+  rebuildIndex();
+  renderList();
+  renderChips();
+});
+
+btnSetParent.addEventListener("click", () => {
+  if(isNew) return alert("Simpan dulu orang ini, baru bisa set orang tua.");
+
+  const parentId = pickParent.value;
+  if(!parentId) return alert("Pilih orang tua terlebih dahulu.");
+  if(parentId === currentId) return alert("Orang tua tidak boleh sama dengan anak.");
+
+  // parent -> child
+  addChild(parentId, currentId);
+  syncBack(parentId);
+
+  // OPSIONAL: jika parent punya pasangan, tambahkan juga sebagai orang tua
+  const parent = get(parentId);
+  if(parent && parent.spouse.length){
+    const spouseId = parent.spouse[0];
+    if(spouseId && spouseId !== currentId){
+      addChild(spouseId, currentId);
+      syncBack(spouseId);
+    }
+  }
+
+  rebuildIndex();
+  renderList();
+  renderChips();
+
+  pickParent.value = "";
+});
+
+btnAddChild.addEventListener("click", () => {
+  const parentId = pickParent.value || currentId;
+  const childId = pickChild.value;
+
+  if(!parentId || !childId){
+    return alert("Pilih orang tua dan anak.");
+  }
+
+  if(parentId === childId){
+    return alert("Orang tua dan anak tidak boleh sama.");
+  }
+
+  addChild(parentId, childId);
+  syncBack(parentId);
+
+  // opsional: jika parent punya pasangan → tambahkan juga
+  const parent = get(parentId);
+  if(parent && parent.spouse.length){
+    const spouseId = parent.spouse[0];
+    addChild(spouseId, childId);
+    syncBack(spouseId);
+  }
+
+  rebuildIndex();
+  renderList();
+  renderChips();
+
+  pickParent.value = "";
+  pickChild.value = "";
+});
+
+
+btnExport.addEventListener("click", exportJSON);
+
+btnImport.addEventListener("click", () => fileInput.click());
+fileInput.addEventListener("change", (e) => {
+  const f = e.target.files?.[0];
+  if(f) importJSONFile(f);
+  fileInput.value = "";
+});
+
+btnOpenViewer.addEventListener("click", () => {
+  window.location.href = "index.html";
+});
+
+/* init */
+loadStore().catch(err => alert(err.message));
+</script>
+</body>
+</html>
